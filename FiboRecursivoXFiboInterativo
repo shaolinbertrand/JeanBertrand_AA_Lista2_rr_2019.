@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+int i=0, iinterativo=0;
+int FiboRecursivo(int n){
+	i++;
+	if (n == 0)
+		return 0;
+	else if (n == 1){
+		return 1;
+	}
+	else {
+		return FiboRecursivo(n-1) + FiboRecursivo(n-2);
+	}
+}
+
+int FiboInterativo(int n){
+		int vet[n];
+		int j;
+		iinterativo++;
+		vet[0] = 0;
+		vet[1] = 1;
+		for (j = 2;j<=n;j++){
+			iinterativo++;
+			vet[j] = vet[j-1] + vet[j-2];
+		}
+		return(vet[n]);
+}
+
+int main(int argc, char *argv[]) {
+		int n;
+		for (n = 1;n<=40;n++){
+			i = 0; iinterativo =0;
+			printf("FiboRecursivo(%d), %d chamada, %d\n",n,i,FiboRecursivo(n));
+			printf("FiboInterativo(%d),%d chamada, %d\n",n,iinterativo,FiboInterativo(n));
+		}
+		
+	return 0;
+}
