@@ -1,0 +1,52 @@
+/* Codigo adaptado de Marcos Castro disponivel em https://gist.github.com/marcoscastro/60f8f82298212e267021
+Gera todas as permutações */
+#include <stdio.h>
+#include  <stdlib.h>
+int k=0,contp=0;
+void troca(int vetor[], int i, int j)
+{
+	int aux = vetor[i];
+	vetor[i] = vetor[j];
+	vetor[j] = aux;
+}
+
+void permuta(int vetor[], int inf, int sup)
+{
+	contp = contp+1;
+	if(inf == sup)
+	{
+		int i;
+		for(i = 0; i <= sup; i++)
+			printf("%d ", vetor[i]);
+		printf("\n");
+		k++;
+	}
+	else
+	{
+		int i;
+		for(i = inf; i <= sup; i++)
+		{
+			troca(vetor, inf, i);
+			permuta(vetor, inf + 1, sup);
+			troca(vetor, inf, i); // backtracking
+		}
+	}
+}
+
+int main(int argc, char *argv[])
+{
+	int i,tam_v;
+	printf("digite o tamanho do numero que deseja fazer a permuta\n");
+	scanf("%d",&tam_v);
+	int v[tam_v];
+	for (i = 0; i<tam_v;i++){
+		printf("digite o valor %d: ",i+1);
+		scanf("%d",&v[i]);
+	}
+
+	permuta(v, 0, tam_v - 1);
+	printf("%d permutas realizadas\n",k);
+	printf("funcao recursiva chamada %d vezes",contp);
+
+	return 0;
+}
